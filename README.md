@@ -1,37 +1,114 @@
-# portfolio
-My Portfolio
+# Portfolio Lilly Schattner
 
-Personal Use License
+Statische Website ohne Build-Tool: reines HTML, CSS und JavaScript.
+Kein Framework, keine Abhängigkeiten, keine Installation.
 
-Copyright © 2026 Lilly Schattner. All rights reserved.
+---
 
-1. Permission
+## Lokal ansehen
 
-Permission is granted to download, view, execute, and use the source code contained in this repository for personal, private, and educational purposes.
+HTML-Dateien direkt per Doppelklick zu öffnen funktioniert, führt aber zu
+Problemen bei Pfaden und beim Laden von Schriften. Besser ein kleiner lokaler
+Server:
 
-This permission is non-exclusive, non-transferable, and does not grant ownership or copyright in the source code.
+```bash
+# Python (auf fast jedem Rechner vorhanden)
+cd public
+python3 -m http.server 8000
+# danach: http://localhost:8000
+```
 
-2. Restrictions
+```bash
+# Alternative, falls Node installiert ist
+npx serve public
+```
 
-Without prior written permission from the copyright holder, you may not:
+---
 
-modify, adapt, or create derivative works based on the source code;
-redistribute, publish, or republish the source code or modified versions of it;
-incorporate the source code into another publicly distributed project;
-sell, sublicense, or otherwise commercially exploit the source code;
-claim the source code or substantial portions of it as your own work.
-3. Portfolio and Demonstration
+## Struktur
 
-You may use and run the software for personal demonstration, educational, or learning purposes.
+| Ordner         | Inhalt                                                        |
+| -------------- | ------------------------------------------------------------- |
+| `public/`      | **Alles, was online geht.** Nur dieser Ordner wird ausgeliefert. |
+| `inhalte/`     | Textquellen der Projektseiten als Markdown. Nicht online.      |
+| `rohmaterial/` | Screenshots, Figma-Exporte, unbearbeitete Originale. Nicht online. |
 
-You may refer to this repository in your own portfolio, résumé, or educational work, provided that the original author is clearly credited and the source code is not redistributed.
+Die Trennung ist wichtig: In `inhalte/` und `rohmaterial/` liegen Entwürfe und
+Originaldateien. Läge alles im selben Ordner, wären sie über die Domain
+abrufbar.
 
-4. Third-Party Materials
+**Nicht nach `public/` legen:** die Bachelorarbeit als PDF (enthält die
+Privatanschrift), unveröffentlichte Arbeiten, alles mit fremden Bildrechten.
 
-Third-party assets, libraries, fonts, artwork, music, sounds, and other materials included in or referenced by this repository are not covered by this license. Such materials remain subject to their respective licenses and copyright holders.
+### CSS
 
-5. Copyright
+| Datei                     | Zuständig für                                    |
+| ------------------------- | ------------------------------------------------ |
+| `assets/css/tokens.css`   | Farben, Schriftgrößen, Abstände, Hell/Dunkel     |
+| `assets/css/base.css`     | Reset, Grundtypografie, Layout-Container, Fokus  |
+| `assets/css/komponenten.css` | Header, Footer, Projektliste, Buttons, Karten |
 
-All rights not expressly granted by this license are reserved by the copyright holder.
+Reihenfolge der Einbindung ist bindend: `tokens` → `base` → `komponenten`.
+Farbwerte und Größen stehen ausschließlich in `tokens.css`. Wer einen Hex-Wert
+direkt in eine Komponente schreibt, bricht das System.
 
-For permissions beyond those granted above, please contact the copyright holder.
+### JavaScript
+
+| Datei                       | Zuständig für                                |
+| --------------------------- | -------------------------------------------- |
+| `assets/js/theme.js`        | Umschalter Hell/Dunkel                       |
+| `assets/js/reveal.js`       | Einblenden von Abschnitten beim Scrollen     |
+| `assets/js/projektliste.js` | Bildvorschau, die dem Mauszeiger folgt       |
+
+Alle drei sind Zusatz, keine Voraussetzung: Ohne JavaScript bleibt die Seite
+vollständig lesbar und bedienbar.
+
+---
+
+## Veröffentlichen
+
+Über **Cloudflare Pages**, verbunden mit diesem Repository.
+
+| Einstellung             | Wert     |
+| ----------------------- | -------- |
+| Framework preset        | None     |
+| Build command           | *(leer)* |
+| Build output directory  | `public` |
+
+Das `Build output directory` ist der Punkt, der die Ordnertrennung oben erst
+wirksam macht.
+
+> **GitHub Pages funktioniert hier nicht.** Es liefert private Repositories nur
+> in bezahlten Tarifen aus. Entweder Cloudflare Pages nutzen oder das
+> Repository öffentlich machen.
+
+---
+
+## Arbeitsregeln
+
+- Ein Thema pro Commit, Nachricht sagt *was* sich geändert hat
+  („Projektseite Traumkaufhaus ergänzt“ statt „update“).
+- Texte werden in `inhalte/` gepflegt und von dort in die HTML-Datei übernommen –
+  nicht umgekehrt.
+- Bilder vor dem Ablegen in `public/` verkleinern: max. 1600 px Breite, WebP
+  oder JPG. Originale nach `rohmaterial/`.
+- Jedes `<img>` bekommt `alt`, `width` und `height`.
+- Vor jedem Deploy: einmal mit `Tab` durch die geänderte Seite.
+
+## Stand
+
+- [ ] Schritt 1 – Repo und Struktur
+- [ ] Schritt 2 – tokens.css
+- [ ] Schritt 3 – base.css
+- [ ] Schritt 4 – Header und Footer
+- [ ] Schritt 5 – Startseite
+- [ ] Schritt 6 – Projektliste
+- [ ] Schritt 7 – Projektseite Traumkaufhaus
+- [ ] Schritt 8 – übrige Projektseiten
+- [ ] Schritt 9 – Über mich, Kontakt
+- [ ] Schritt 10 – Impressum, Datenschutz, 404
+- [ ] Schritt 11 – theme.js, reveal.js
+- [ ] Schritt 12 – Meta-Tags, Favicon, Sitemap
+- [ ] Schritt 13 – Bilder und Performance
+- [ ] Schritt 14 – Prüfen
+- [ ] Schritt 15 – Deploy und Domain
