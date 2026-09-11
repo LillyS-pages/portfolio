@@ -1,0 +1,1256 @@
+/* ==========================================================================
+   PORTFOLIO LILLY SCHATTNER
+   Eine einzige Stylesheet-Datei, in Abschnitte geteilt:
+
+     1  Schriften
+     2  Design-Tokens      ← hier änderst du Farben, Größen, Abstände
+     3  Reset und Basis
+     4  Layout-Hilfen
+     5  Bausteine          (Buttons, Chips, Abschnittstitel)
+     6  Kopf- und Fußzeile
+     7  Startseite
+     8  Projektliste
+     9  Projektseite
+    10  Über mich, Kontakt, Fehlerseite
+    11  Bewegung und Druck
+
+   Regel: Farbwerte und Größen stehen ausschließlich in Abschnitt 2.
+   Wer weiter unten einen Hex-Wert einträgt, bricht das System.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1  SCHRIFTEN
+   Lokal ausgeliefert, nicht über das Google-Fonts-CDN. Das ist kein Detail:
+   Beim Einbinden über Google werden IP-Adressen der Besucher in die USA
+   übertragen – dafür gab es Abmahnungen.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('../fonts/bricolage-grotesque-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('../fonts/bricolage-grotesque-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7,
+    U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F,
+    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+
+
+/* ==========================================================================
+   2  DESIGN-TOKENS
+   ========================================================================== */
+
+:root {
+  /* --- Schriftfamilien --- */
+  --font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
+
+  /* --- Schriftgrößen ---
+     Fluid: skaliert stufenlos zwischen kleinem und großem Fenster.
+     Deshalb braucht die Seite fast keine Media Queries. */
+  --step--1: clamp(0.83rem, 0.81rem + 0.11vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.13rem + 0.35vw, 1.44rem);
+  --step-2: clamp(1.44rem, 1.31rem + 0.62vw, 1.85rem);
+  --step-3: clamp(1.73rem, 1.51rem + 1.05vw, 2.37rem);
+  --step-4: clamp(2.07rem, 1.72rem + 1.72vw, 3.04rem);
+  --step-5: clamp(2.49rem, 1.93rem + 2.72vw, 3.89rem);
+  --step-6: clamp(2.99rem, 2.13rem + 4.19vw, 4.98rem);
+  --step-7: clamp(3.58rem, 2.29rem + 6.31vw, 6.38rem);
+
+  /* --- Abstände --- */
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: clamp(5rem, 3rem + 9vw, 10rem);
+
+  /* --- Layout --- */
+  --breite-inhalt: 68rem;
+  --breite-text: 38rem;
+  --rand: clamp(1.25rem, 5vw, 4rem);
+  --radius: 14px;
+  --radius-s: 8px;
+
+  /* --- Bewegung --- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Farben: HELL --- */
+  color-scheme: light;
+  --bg: #f6f5f1;
+  --bg-elev: #ffffff;
+  --text: #14141a;
+  --text-muted: #5d5d68;
+  --line: rgb(20 20 26 / 0.13);
+  --line-stark: rgb(20 20 26 / 0.28);
+  --accent: #c9f24d;
+  --accent-ink: #12160a;
+  --accent-text: #4a6b00; /* Akzent für Fließtext – helles Lime hat auf
+                             hellem Grund zu wenig Kontrast */
+  --focus: #2f4bff;
+  --schatten: 0 1px 2px rgb(20 20 26 / 0.05), 0 12px 32px -12px rgb(20 20 26 / 0.18);
+}
+
+/* --- Farben: DUNKEL ---
+   Greift, wenn das System auf Dunkel steht und nichts anderes gewählt wurde. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0b0b0e;
+    --bg-elev: #131317;
+    --text: #f3f2ed;
+    --text-muted: #9b9ba6;
+    --line: rgb(243 242 237 / 0.14);
+    --line-stark: rgb(243 242 237 / 0.32);
+    --accent-text: #c9f24d;
+    --focus: #c9f24d;
+    --schatten: 0 1px 2px rgb(0 0 0 / 0.4), 0 20px 48px -20px rgb(0 0 0 / 0.8);
+  }
+}
+
+/* Greift, wenn im Umschalter ausdrücklich Dunkel gewählt wurde. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0b0e;
+  --bg-elev: #131317;
+  --text: #f3f2ed;
+  --text-muted: #9b9ba6;
+  --line: rgb(243 242 237 / 0.14);
+  --line-stark: rgb(243 242 237 / 0.32);
+  --accent-text: #c9f24d;
+  --focus: #c9f24d;
+  --schatten: 0 1px 2px rgb(0 0 0 / 0.4), 0 20px 48px -20px rgb(0 0 0 / 0.8);
+}
+
+
+/* ==========================================================================
+   3  RESET UND BASIS
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  /* Deutsche Komposita sind lang. „Datenschutzerklärung“ in Displaygröße
+     ist auf einem 375px-Bildschirm breiter als der Bildschirm – ohne diese
+     zwei Zeilen scrollt die Seite seitlich. Getrennt wird nur im Notfall. */
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+/* Sichtbarer Fokusring. Bitte nie entfernen – ohne ihn ist die Seite
+   per Tastatur nicht bedienbar. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+
+/* ==========================================================================
+   4  LAYOUT-HILFEN
+   ========================================================================== */
+
+.wrap {
+  width: 100%;
+  max-width: var(--breite-inhalt);
+  margin-inline: auto;
+  padding-inline: var(--rand);
+}
+
+.prose {
+  max-width: var(--breite-text);
+  hyphens: auto;
+}
+
+.prose > * + * {
+  margin-block-start: 1.1em;
+}
+
+.prose h2 {
+  font-size: var(--step-2);
+  margin-block-start: 2em;
+}
+
+.prose h3 {
+  font-size: var(--step-1);
+  margin-block-start: 1.6em;
+}
+
+.prose a {
+  text-decoration-color: var(--line-stark);
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.2em;
+}
+
+.prose li + li {
+  margin-block-start: 0.4em;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose figure {
+  margin-block: 2em;
+}
+
+.prose figure img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.prose figcaption {
+  margin-block-start: 0.7em;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+/* Nur für Screenreader */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: var(--rand);
+  z-index: 100;
+  transform: translateY(-120%);
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.6em 1em;
+  border-radius: 0 0 var(--radius-s) var(--radius-s);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   5  BAUSTEINE
+   ========================================================================== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: var(--step--1);
+  padding: 0.5em 0.85em;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  color: var(--text-muted);
+  max-width: 100%;
+  line-height: 1.35;
+}
+
+.chip--accent {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--accent-ink);
+  font-weight: 500;
+}
+
+.chip__dot {
+  flex: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.85em 1.35em;
+  border: 1px solid var(--text);
+  border-radius: 100px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease), background-color 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+
+.btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-stark);
+}
+
+.btn__pfeil {
+  transition: transform 0.25s var(--ease);
+}
+
+.btn:hover .btn__pfeil {
+  transform: translateX(3px);
+}
+
+.abschnitt-titel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block-end: var(--space-s);
+  border-block-end: 1px solid var(--line);
+  margin-block-end: var(--space-l);
+}
+
+.abschnitt-titel h2 {
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+.abschnitt-titel span {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   6  KOPF- UND FUSSZEILE
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px);
+  border-block-end: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  min-height: 4.25rem;
+}
+
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  margin-inline-end: auto;
+}
+
+.marke__punkt {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+  transition: transform 0.3s var(--ease);
+}
+
+.marke:hover .marke__punkt {
+  transform: scale(1.5);
+}
+
+.site-header nav ul {
+  display: flex;
+  gap: clamp(0.75rem, 2.5vw, 1.75rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-header nav a {
+  display: block;
+  white-space: nowrap;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  text-decoration: none;
+  padding-block: 0.5rem;
+  position: relative;
+  transition: color 0.2s var(--ease);
+}
+
+.site-header nav a::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0.15rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current='page'] {
+  color: var(--text);
+}
+
+.site-header nav a:hover::after,
+.site-header nav a[aria-current='page']::after {
+  transform: scaleX(1);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex: none;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--line-stark);
+  transform: rotate(20deg);
+}
+
+.theme-toggle .mond {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle .sonne,
+[data-theme='dark'] .theme-toggle .strahlen {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle .mond {
+  display: block;
+}
+
+@media (max-width: 34rem) {
+  .marke__name {
+    font-size: 0.9rem;
+  }
+  .site-header nav a {
+    font-size: 0.8rem;
+  }
+  .theme-toggle {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (max-width: 27rem) {
+  .marke__name {
+    display: none;
+  }
+}
+
+/* --- Fußzeile --- */
+
+.site-footer {
+  margin-block-start: var(--space-3xl);
+  border-block-start: 1px solid var(--line);
+  padding-block: var(--space-2xl) var(--space-l);
+}
+
+.cta {
+  padding-block-end: var(--space-2xl);
+}
+
+.cta__label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  margin-block-end: var(--space-s);
+}
+
+.cta__mail {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 0.12em;
+  background-position: 0 92%;
+  transition: background-size 0.4s var(--ease);
+  word-break: break-word;
+}
+
+.cta__mail:hover {
+  background-size: 100% 0.12em;
+}
+
+.cta__text {
+  margin-block-start: var(--space-m);
+  color: var(--text-muted);
+  max-width: 32ch;
+}
+
+.unten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-m);
+  align-items: center;
+  justify-content: space-between;
+  padding-block-start: var(--space-m);
+  border-block-start: 1px solid var(--line);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.unten ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.unten a {
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: color 0.2s var(--ease);
+}
+
+.unten a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   7  STARTSEITE
+   ========================================================================== */
+
+.hero {
+  padding-block: clamp(4rem, 12vh, 9rem) 0;
+}
+
+.hero__status {
+  margin-block-end: var(--space-m);
+}
+
+.hero__name {
+  font-size: var(--step-7);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+.hero__rolle {
+  margin-block-start: var(--space-s);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.hero__claim {
+  margin-block-start: var(--space-l);
+  max-width: 34ch;
+  font-size: var(--step-2);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.hero__aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-l);
+}
+
+.block {
+  padding-block-start: var(--space-3xl);
+}
+
+.mehr {
+  margin-block-start: var(--space-l);
+  font-size: var(--step--1);
+}
+
+.mehr a {
+  text-decoration-color: var(--line-stark);
+}
+
+.koennen {
+  display: grid;
+  gap: var(--space-l);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.feld h3 {
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+
+.feld p {
+  margin-block-start: var(--space-xs);
+  color: var(--text-muted);
+}
+
+.feld ul {
+  margin-block-start: var(--space-m);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.feld li {
+  font-size: var(--step--1);
+  padding: 0.35em 0.7em;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   8  PROJEKTLISTE
+   ========================================================================== */
+
+.liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block-start: 1px solid var(--line);
+}
+
+.zeile {
+  border-block-end: 1px solid var(--line);
+  position: relative;
+}
+
+.zeile__link {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto auto 1.5rem;
+  align-items: baseline;
+  gap: var(--space-m);
+  padding-block: clamp(1.25rem, 3vw, 2rem);
+  text-decoration: none;
+  transition: padding-inline 0.35s var(--ease), opacity 0.3s var(--ease);
+}
+
+.zeile__nr {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.zeile__titel {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.zeile__kurz {
+  display: block;
+  margin-block-start: 0.5em;
+  color: var(--text-muted);
+  font-size: var(--step-0);
+  max-width: 46ch;
+}
+
+.zeile__meta,
+.zeile__jahr {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.zeile__pfeil {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.zeile__link:hover .zeile__pfeil {
+  transform: translate(3px, -3px);
+  color: var(--text);
+}
+
+/* Bild: auf kleinen Bildschirmen direkt in der Liste */
+.zeile__bild {
+  padding-block-end: var(--space-m);
+}
+
+.zeile__bild img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+/* Ab Tablet: Bild folgt dem Mauszeiger */
+@media (min-width: 60rem) and (hover: hover) and (pointer: fine) {
+  .zeile__bild {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 22rem;
+    padding: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 40;
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(0.94);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    will-change: transform;
+  }
+
+  .zeile__bild img {
+    box-shadow: var(--schatten);
+  }
+
+  .zeile:hover .zeile__bild {
+    opacity: 1;
+    transform: translate3d(var(--x, 0), var(--y, 0), 0) scale(1);
+  }
+
+  /* Nicht gehoverte Zeilen treten zurück – lenkt den Blick */
+  .liste:hover .zeile:not(:hover) .zeile__link {
+    opacity: 0.45;
+  }
+
+  .zeile__link:hover {
+    padding-inline-start: 1rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .zeile__link {
+    grid-template-columns: 2.25rem 1fr;
+    row-gap: var(--space-2xs);
+  }
+
+  .zeile__meta,
+  .zeile__jahr {
+    grid-column: 2;
+    /* Auf schmalen Geräten darf die Rollenliste umbrechen,
+       sonst schiebt sie die Seite seitlich auf. */
+    white-space: normal;
+  }
+
+  .zeile__pfeil {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   9  PROJEKTSEITE
+   ========================================================================== */
+
+.seitenkopf {
+  padding-block: clamp(2.5rem, 7vh, 5rem) var(--space-l);
+}
+
+.seitenkopf h1 {
+  font-size: var(--step-6);
+}
+
+.zurueck {
+  font-size: var(--step--1);
+  margin-block-end: var(--space-l);
+}
+
+.zurueck a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.zurueck a:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.seitenkopf__kurz {
+  margin-block-start: var(--space-m);
+  max-width: 44ch;
+  font-size: var(--step-1);
+  color: var(--text-muted);
+}
+
+.fakten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-m);
+  margin-block-start: var(--space-xl);
+  padding-block-start: var(--space-m);
+  border-block-start: 1px solid var(--line);
+}
+
+.fakten dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.fakten dd {
+  margin: 0.35em 0 0;
+  font-size: var(--step-0);
+}
+
+.kopf__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-l);
+}
+
+.grossbild {
+  margin-block: var(--space-l) var(--space-2xl);
+}
+
+.grossbild img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.zahlen {
+  list-style: none;
+  padding: 0;
+  margin-block: 1.5em;
+  display: grid;
+  gap: 0;
+  border-block-start: 1px solid var(--line);
+}
+
+.zahlen li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: var(--space-s);
+  align-items: baseline;
+  padding-block: 0.7rem;
+  border-block-end: 1px solid var(--line);
+}
+
+.zahlen b {
+  font-family: var(--font-mono);
+  font-size: var(--step-1);
+  color: var(--accent-text);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.weiter {
+  margin-block-start: var(--space-3xl);
+}
+
+.weiter a {
+  display: block;
+  padding-block: var(--space-l);
+  border-block-start: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.weiter span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.weiter strong {
+  display: block;
+  margin-block-start: 0.3em;
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  transition: color 0.2s var(--ease);
+}
+
+.weiter a:hover strong {
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   10  ÜBER MICH, KONTAKT, FEHLERSEITE
+   ========================================================================== */
+
+.zwei {
+  display: grid;
+  gap: var(--space-2xl);
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+@media (max-width: 52rem) {
+  .zwei {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+}
+
+.einstieg {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.karte {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-m);
+  box-shadow: var(--schatten);
+}
+
+.karte h2 {
+  font-size: var(--step-0);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.karte dl {
+  margin-block-start: var(--space-s);
+  display: grid;
+  gap: 0.15rem;
+}
+
+.karte dt {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  margin-block-start: var(--space-2xs);
+}
+
+.karte dd {
+  margin: 0;
+}
+
+.karte__aktion {
+  margin-block-start: var(--space-m);
+}
+
+.stationen {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stationen li {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: var(--space-m);
+  padding-block: var(--space-m);
+  border-block-end: 1px solid var(--line);
+}
+
+.stationen__zeit {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.stationen h3 {
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+
+.stationen p {
+  margin-block-start: 0.35em;
+  color: var(--text-muted);
+}
+
+@media (max-width: 40rem) {
+  .stationen li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+}
+
+.wege {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.weg {
+  padding-block-start: var(--space-m);
+  border-block-start: 1px solid var(--line);
+}
+
+.weg h2 {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-block-end: var(--space-xs);
+}
+
+.gross {
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.gross:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.weg ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--step-1);
+}
+
+.fehler {
+  padding-block: clamp(4rem, 14vh, 9rem) var(--space-2xl);
+  max-width: 40rem;
+}
+
+.fehler__code {
+  font-family: var(--font-mono);
+  color: var(--accent-text);
+  font-size: var(--step-1);
+}
+
+.fehler h1 {
+  margin-block-start: var(--space-s);
+  font-size: var(--step-5);
+}
+
+.fehler__text {
+  margin-block-start: var(--space-m);
+  color: var(--text-muted);
+  font-size: var(--step-1);
+}
+
+.fehler__aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-block-start: var(--space-l);
+}
+
+.hinweis {
+  margin-block-start: var(--space-xl);
+  padding: var(--space-s);
+  border: 1px dashed var(--line-stark);
+  border-radius: var(--radius-s);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+
+/* ==========================================================================
+   11  BEWEGUNG UND DRUCK
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].ist-sichtbar {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Wer im Betriebssystem „Bewegung reduzieren“ eingestellt hat,
+   bekommt keine Animationen. Das ist keine Kür. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Sanfte Seitenübergänge, wo der Browser sie unterstützt */
+@view-transition {
+  navigation: auto;
+}
+
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .site-header,
+  .theme-toggle,
+  .site-footer nav {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}

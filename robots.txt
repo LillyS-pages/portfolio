@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Nach dem Livegang die echte Adresse eintragen.
+Sitemap: https://deine-domain.de/sitemap.xml

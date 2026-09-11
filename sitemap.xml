@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Nach dem Livegang „deine-domain.de“ überall ersetzen. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://deine-domain.de/index.html</loc></url>
+  <url><loc>https://deine-domain.de/projekte/index.html</loc></url>
+  <url><loc>https://deine-domain.de/projekte/traumkaufhaus.html</loc></url>
+  <url><loc>https://deine-domain.de/projekte/kmm-kueche.html</loc></url>
+  <url><loc>https://deine-domain.de/projekte/typografie-pizza.html</loc></url>
+  <url><loc>https://deine-domain.de/projekte/social-media-konzept.html</loc></url>
+  <url><loc>https://deine-domain.de/ueber-mich.html</loc></url>
+  <url><loc>https://deine-domain.de/kontakt.html</loc></url>
+  <url><loc>https://deine-domain.de/impressum.html</loc></url>
+  <url><loc>https://deine-domain.de/datenschutz.html</loc></url>
+</urlset>

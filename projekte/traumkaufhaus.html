@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mein Praktikum im Traumkaufhaus – Lilly Schattner</title>
+    <meta name="description" content="Bachelorarbeit: Was passiert, wenn man Web-Barrierefreiheitsrichtlinien konsequent auf ein Videospiel überträgt – als spielbarer Prototyp, mit 20 Testpersonen geprüft.">
+
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b0e" media="(prefers-color-scheme: dark)">
+
+    <!-- Vorschau in Slack, WhatsApp, LinkedIn ... -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="Lilly Schattner">
+    <meta property="og:title" content="Mein Praktikum im Traumkaufhaus – Lilly Schattner">
+    <meta property="og:description" content="Bachelorarbeit: Was passiert, wenn man Web-Barrierefreiheitsrichtlinien konsequent auf ein Videospiel überträgt – als spielbarer Prototyp, mit 20 Testpersonen geprüft.">
+    <meta property="og:image" content="https://deine-domain.de/bilder/og-default.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--
+      Farbschema VOR dem ersten Zeichnen setzen, sonst blitzt kurz das
+      falsche auf. Deshalb hier inline und nicht in script.js.
+    -->
+    <script>
+      (function () {
+        try {
+          var g = localStorage.getItem('theme');
+          var s = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+          document.documentElement.dataset.theme = g || s;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a href="../index.html" class="marke" aria-label="Lilly Schattner – zur Startseite">
+          <span class="marke__punkt" aria-hidden="true"></span>
+          <span class="marke__name">Lilly Schattner</span>
+        </a>
+
+        <nav aria-label="Hauptnavigation">
+          <ul>
+          <li><a href="../projekte/index.html" aria-current="page">Arbeiten</a></li>
+          <li><a href="../ueber-mich.html">Über mich</a></li>
+          <li><a href="../kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+
+        <button class="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle class="sonne" cx="12" cy="12" r="5" fill="currentColor"></circle>
+            <path class="mond" d="M20 13.5A8 8 0 0 1 10.5 4a8 8 0 1 0 9.5 9.5Z" fill="currentColor"></path>
+            <g class="strahlen" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+              <path d="M12 1.5v2M12 20.5v2M22.5 12h-2M3.5 12h-2M19.4 4.6l-1.4 1.4M6 18l-1.4 1.4M19.4 19.4 18 18M6 6 4.6 4.6"></path>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="inhalt">
+      <article>
+        <header class="wrap seitenkopf">
+          <p class="zurueck" data-reveal><a href="index.html">← Alle Arbeiten</a></p>
+          <h1 data-reveal style="--reveal-delay:60ms">Mein Praktikum im Traumkaufhaus</h1>
+          <p class="seitenkopf__kurz" data-reveal style="--reveal-delay:120ms">Bachelorarbeit: Was passiert, wenn man Web-Barrierefreiheitsrichtlinien konsequent auf ein Videospiel überträgt – als spielbarer Prototyp, mit 20 Testpersonen geprüft.</p>
+
+          <dl class="fakten" data-reveal style="--reveal-delay:180ms">
+            <div><dt>Jahr</dt><dd>2026</dd></div>
+            <div><dt>Kontext</dt><dd>Bachelorarbeit, Kommunikation und Medienmanagement</dd></div>
+            <div><dt>Rolle</dt><dd>Recherche, Konzept, Game Design, UI-Design, Entwicklung, Pixel-Art, Evaluation</dd></div>
+            <div><dt>Werkzeuge</dt><dd>Godot, GDScript, HTML, CSS, Aseprite, Affinity, WCAG</dd></div>
+          </dl>
+          <p class="kopf__links" data-reveal><a class="btn" href="https://lost-npc.itch.io/traumkaufhauspraktikum-prototyp" target="_blank" rel="noopener">Live ansehen <span class="btn__pfeil" aria-hidden="true">↗</span></a></p>
+        </header>
+
+        <figure class="wrap grossbild" data-reveal>
+          <img src="../bilder/projekte/traumkaufhaus.jpg" alt="Spielszene im Pixel-Stil: oben die dauerhaft sichtbare Questanzeige mit Fortschritt, unten ein Dialogkasten mit Sprecherangabe"
+               width="1600" height="1200" loading="eager" decoding="async">
+        </figure>
+
+        <div class="wrap">
+          <div class="prose" data-reveal>
+<h2>Ausgangslage</h2>
+<p>Für Websites ist Barrierefreiheit inzwischen weitgehend geregelt: Mit den WCAG
+gibt es einen ausdifferenzierten Referenzrahmen, dazu Normen, Prüfwerkzeuge und
+rechtliche Vorgaben. Für Videospiele gilt das so nicht – dort ist
+Barrierefreiheit weder verbindlich noch einheitlich geregelt.</p>
+<p>Videospiele sind aber längst nicht nur Freizeitprodukt. Sie sind Orte der
+Unterhaltung, des Lernens und der sozialen Zugehörigkeit. Gerade weil sie als
+Freizeitmedium gelten, fallen Barrieren dort weniger auf als auf einer
+Behördenseite: Wenn ein Spiel zu unübersichtlich, zu stressig, zu schnell, zu
+dunkel oder zu schwer verständlich ist, wird es einfach nicht weitergespielt.
+Aus Perspektive digitaler Teilhabe ist genau das relevant – auch digitale
+Freizeitorte entscheiden darüber, wer sich selbstverständlich beteiligen kann.</p>
+<h2>Meine Aufgabe</h2>
+<p>Meine Bachelorarbeit ging der Frage nach: <strong>Inwieweit lassen sich bestehende
+Web-Barrierefreiheitsrichtlinien auf Videospiele übertragen und in
+Game-Mechaniken integrieren?</strong> Vier Monate, allein, von der Literaturrecherche
+über einen spielbaren Prototyp bis zu dessen Evaluation.</p>
+<h2>Vorgehen</h2>
+<p><strong>Erst die Lücke bestimmen, dann gestalten.</strong> Ich habe WCAG und
+Game-Accessibility-Guidelines gegenübergestellt und geprüft, wo sie sich decken
+und wo nicht. Die Webprinzipien Wahrnehmbarkeit, Bedienbarkeit, Verständlichkeit
+und Robustheit tragen auch im Spiel. Sie erfassen aber Regelbindung,
+Echtzeitreaktion, komplexe Steuerung und dynamische Reizverarbeitung nur
+teilweise. Daraus habe ich einen Kriterienkatalog entwickelt, der beide Seiten
+verbindet und jede Anforderung an eine konkrete Konsequenz für den Prototyp
+knüpft.</p>
+<p><strong>Der Prototyp ist um die Zugänglichkeit herum entstanden, nicht andersherum.</strong>
+Hilfsfunktionen sollten nicht nur vorhanden, sondern auch auffindbar sein –
+deshalb sitzen Einstellungen, Transkript, Ton und Tutorial dauerhaft sichtbar in
+der oberen Leiste statt in einem Untermenü.</p>
+<p><strong>Dialoge schalten manuell weiter, nicht automatisch.</strong> Die naheliegende
+Alternative wäre ein Anzeigetimer gewesen. Der hätte bedeutet, dass langsameres
+Lesen zum Scheitern führt. Stattdessen bleibt jeder Textkasten stehen, bis
+weitergeklickt wird, und lässt sich mit „Stop" anhalten. Informationen müssen
+nicht nur da sein, sondern auch lange genug verfügbar bleiben.</p>
+<p><strong>Aus Navigation wird Questanzeige.</strong> Im Web entsteht Orientierung durch
+Navigationsstrukturen, Überschriften und sichtbare Zustände. Im Spiel ist
+Orientierung räumlich und handlungsbezogen: Man muss nicht nur erkennen, welche
+Information wichtig ist, sondern auch, wohin man geht und was als Nächstes zu tun
+ist. Übersetzt habe ich das in eine dauerhaft sichtbare Aufgabenleiste mit
+Zählstand („Traumkristalle einsammeln – Fortschritt 4/8") und einem Hinweis, wo
+zu suchen ist. Wer eine Ansage verpasst hat, liest sie oben nach, statt sich
+erinnern zu müssen.</p>
+<p><strong>Die Spielwelt wurde bewusst kleiner.</strong> Ursprünglich war sie größer angelegt,
+um nach einem vollständigen Spiel zu wirken. Im Aufbau zeigte sich, dass eine
+große Welt die Orientierung erschwert und die kognitive Belastung erhöht. Die
+Verdichtung war deshalb nicht nur eine Produktionsentscheidung, sondern auch
+eine Entscheidung für Barrierearmut.</p>
+<h2>Umsetzung</h2>
+<p>Gebaut in Godot mit GDScript, Pixel-Art in Aseprite, Grafiken in Affinity, die
+Präsentationsseite in HTML und CSS. Der Prototyp läuft als Webexport im Browser
+und ist auf itch.io spielbar.</p>
+<p>Technisch am heikelsten war der Webexport selbst: Inhalte innerhalb eines Canvas
+sind für Screenreader nicht automatisch zugänglich. Eine barrierearme Gestaltung
+der umgebenden Seite kann das unterstützen, ersetzt aber keine Lösung im Spiel.
+Deshalb liegen zugängliche Informationen bewusst außerhalb des Canvas, ergänzt
+um Transkript und Vorlesefunktion.</p>
+<p>Ein Teil der Grafiken stammt aus Open-Source-Quellen. Das war eine bewusste
+Abwägung: In der verfügbaren Zeit wären eigene Assets zulasten der
+Zugänglichkeitsfunktionen gegangen – und die waren der Kern der Arbeit.</p>
+<h2>Ergebnis</h2>
+<p>Evaluiert habe ich den Prototyp mit einem Fragebogen (n = 20) und fünf
+qualitativen Interviews.</p>
+<ul class="zahlen">
+<li><b>100 %</b><span>fanden Texte und Hinweise verständlich</span></li>
+<li><b>100 %</b><span>fanden die Rückmeldungen des Spiels nachvollziehbar</span></li>
+<li><b>90 %</b><span>bewerteten die Einstellungen als hilfreich und nahmen das Spiel als
+  barriereverringernd gestaltet wahr</span></li>
+<li><b>85 %</b><span>erkannten Elemente wieder, die sie aus barrierearmen Websites und
+  Apps kennen – der wichtigste Befund für die Forschungsfrage</span></li>
+<li><b>70 %</b><span>– der schwächste Wert – bei der Übersichtlichkeit wichtiger
+  Informationen</span></li>
+</ul>
+<p>Der letzte Wert ist der aufschlussreichste. Die Kritik traf ausgerechnet die
+Accessibility-Elemente selbst: Textboxen und Overlays nahmen teilweise zu viel
+Raum ein und verdeckten Inhalte, helle Schrift auf wechselndem Hintergrund war
+nicht immer lesbar, Buttons in der oberen Leiste überlagerten die Spielfläche.
+Gut gemeinte Hilfen können also selbst zur Barriere werden, wenn sie visuell zu
+dominant sind oder sich nicht ausreichend vom Hintergrund abheben.</p>
+<p>Aufschlussreich war außerdem eine Rückfrage an Personen, die zu Beginn angegeben
+hatten, keine unterstützenden Funktionen zu brauchen. Fünf von ihnen sagten
+danach, dass sie solche Funktionen durchaus hilfreich fänden – sie erwarten sie
+in Spielen nur nicht. Wer daran gewöhnt ist, dass Spiele nicht auf
+unterschiedliche Bedürfnisse reagieren, nimmt Barrieren nicht als vermeidbares
+Gestaltungsproblem wahr, sondern als selbstverständlichen Teil des Spielens. Der
+Bedarf wird dann gar nicht erst benannt.</p>
+<h2>Was ich mitgenommen habe</h2>
+<p>Die Antwort auf meine Forschungsfrage ist ein Ja mit Bedingung: Webrichtlinien
+sind ein tragfähiger Ausgangspunkt, aber eine unveränderte Übernahme reicht
+nicht. Ihre Stärke entfalten sie erst, wenn sie mediengerecht übersetzt werden –
+in Orientierung, wiederholbares Feedback, Tutorialführung und vor allem in
+Erwartbarkeit.</p>
+<p>Für meine Arbeit an Interfaces ist davon eines geblieben: Fast jede
+Entscheidung für Barrierearmut hat den Prototyp auch für alle anderen besser
+gemacht. Die nachlesbare Aufgabe hilft nicht nur Menschen mit
+Gedächtnisbeeinträchtigung, sondern ebenso allen, die zwischendurch aufstehen.
+Gutes Design ist barrierefrei – das war vorher eine Überzeugung und ist seitdem
+eine Arbeitsweise.</p>
+<h2>Wie es weitergeht</h2>
+<p>Aus der Evaluation ist ein Prototyp 2.0 abgeleitet: wiederholbare,
+situationsbezogene Tutorialhinweise statt einer einmaligen Einführung, ruhigere
+Overlays, eine deutlichere Zuordnung von Dialogen zu Figuren und bessere
+Kontraste. Längerfristig soll aus dem Prototyp ein vollständiges Spiel werden –
+dann mit eigenen Grafiken.</p>
+
+        <figure>
+          <img src="../bilder/projekte/traumkaufhaus-2.jpg" alt="Sammelaufgabe mit Fortschrittsanzeige „4/8“ und eingeblendeter Tastatursteuerung"
+               width="1600" height="1200" loading="lazy" decoding="async">
+          <figcaption>Sammelaufgabe mit Fortschrittsanzeige „4/8“ und eingeblendeter Tastatursteuerung</figcaption>
+        </figure>
+        <figure>
+          <img src="../bilder/projekte/traumkaufhaus-3.jpg" alt="Die Projektseite auf itch.io mit Spielfenster und Beschreibung"
+               width="1600" height="1200" loading="lazy" decoding="async">
+          <figcaption>Die Projektseite auf itch.io mit Spielfenster und Beschreibung</figcaption>
+        </figure>
+          </div>
+        </div>
+      </article>
+
+      <nav class="wrap weiter" aria-label="Weiteres Projekt">
+        <a href="kmm-kueche.html">
+          <span>Nächstes Projekt</span>
+          <strong>KMM Küche</strong>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="cta" data-reveal>
+          <p class="cta__label">Kontakt</p>
+          <a class="cta__mail" href="mailto:hallo@deine-domain.de">hallo@deine-domain.de</a>
+          <p class="cta__text">
+            Schreib mir gern – zu einer offenen Stelle, einem Projekt oder einfach so.
+          </p>
+        </div>
+
+        <div class="unten">
+          <p>© 2026 Lilly Schattner</p>
+          <nav aria-label="Rechtliches und Profile">
+            <ul>
+            <li><a href="https://github.com/lost-npc" rel="me noopener" target="_blank">GitHub<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+            <li><a href="https://lost-npc.itch.io" rel="me noopener" target="_blank">itch.io<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+            <li><a href="https://linkedin.com/in/DEIN-PROFIL" rel="me noopener" target="_blank">LinkedIn<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+              <li><a href="../impressum.html">Impressum</a></li>
+              <li><a href="../datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>

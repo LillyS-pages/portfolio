@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Über mich – Lilly Schattner</title>
+    <meta name="description" content="Über Lilly Schattner – Hintergrund, Arbeitsweise und Stationen.">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b0e" media="(prefers-color-scheme: dark)">
+
+    <!-- Vorschau in Slack, WhatsApp, LinkedIn ... -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="Lilly Schattner">
+    <meta property="og:title" content="Über mich – Lilly Schattner">
+    <meta property="og:description" content="Über Lilly Schattner – Hintergrund, Arbeitsweise und Stationen.">
+    <meta property="og:image" content="https://deine-domain.de/bilder/og-default.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--
+      Farbschema VOR dem ersten Zeichnen setzen, sonst blitzt kurz das
+      falsche auf. Deshalb hier inline und nicht in script.js.
+    -->
+    <script>
+      (function () {
+        try {
+          var g = localStorage.getItem('theme');
+          var s = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark' : 'light';
+          document.documentElement.dataset.theme = g || s;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a href="index.html" class="marke" aria-label="Lilly Schattner – zur Startseite">
+          <span class="marke__punkt" aria-hidden="true"></span>
+          <span class="marke__name">Lilly Schattner</span>
+        </a>
+
+        <nav aria-label="Hauptnavigation">
+          <ul>
+          <li><a href="projekte/index.html">Arbeiten</a></li>
+          <li><a href="ueber-mich.html" aria-current="page">Über mich</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </nav>
+
+        <button class="theme-toggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle class="sonne" cx="12" cy="12" r="5" fill="currentColor"></circle>
+            <path class="mond" d="M20 13.5A8 8 0 0 1 10.5 4a8 8 0 1 0 9.5 9.5Z" fill="currentColor"></path>
+            <g class="strahlen" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+              <path d="M12 1.5v2M12 20.5v2M22.5 12h-2M3.5 12h-2M19.4 4.6l-1.4 1.4M6 18l-1.4 1.4M19.4 19.4 18 18M6 6 4.6 4.6"></path>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="inhalt">
+      <section class="wrap seitenkopf">
+        <h1 data-reveal>Über mich</h1>
+      </section>
+
+      <section class="wrap zwei">
+        <div class="prose" data-reveal>
+          <p class="einstieg">
+            Ich komme aus der Kommunikation und bin über das Gestalten beim Code
+            gelandet. Was mich an dieser Arbeit interessiert, ist die Stelle, an der
+            beides zusammenfällt: Eine Entscheidung im Interface ist immer auch eine
+            Entscheidung darüber, was jemand versteht – und wer außen vor bleibt.
+          </p>
+
+          <!-- ZWEI BIS DREI ABSÄTZE IN DEINER SPRACHE. Kein Bewerbungsdeutsch.
+               Nützliche Fragen: Was machst du lieber als andere? Was nervt dich
+               an schlechten Websites? Woran arbeitest du gerade? -->
+          <p>
+            Am liebsten arbeite ich an Projekten, bei denen Inhalte im Mittelpunkt
+            stehen – Kultur, Bildung, Bibliotheken, Spiele. Dort zählt, dass Leute
+            finden und verstehen, was sie suchen, und nicht, wie viele Effekte die
+            Seite hat.
+          </p>
+
+          <!-- EIN PERSÖNLICHER SATZ. Wirklich. Der bleibt hängen und ist oft
+               der Gesprächseinstieg im Vorstellungsgespräch. -->
+          <p>Wenn ich nicht am Rechner sitze: …</p>
+
+          <h2>Arbeitsweise</h2>
+          <ul>
+            <li>Erst verstehen, was gebraucht wird – dann gestalten.</li>
+            <li>Früh Zwischenstände zeigen, statt lange still zu arbeiten.</li>
+            <li>Entscheidungen begründen können, auch die kleinen.</li>
+            <li>Barrierefreiheit von Anfang an, nicht als Nacharbeit.</li>
+          </ul>
+        </div>
+
+        <aside>
+          <!-- Porträtfoto: als bilder/portrait.jpg ablegen und einkommentieren.
+          <img src="bilder/portrait.jpg" alt="Porträtfoto von Lilly Schattner"
+               width="640" height="800" style="border-radius:var(--radius);margin-block-end:var(--space-m)">
+          -->
+          <div class="karte" data-reveal>
+            <h2>Kurz</h2>
+            <dl>
+              <dt>Standort</dt><dd>ORT EINTRAGEN</dd>
+              <dt>Schwerpunkt</dt><dd>Webdesign · Frontend · UX/UI</dd>
+              <dt>Sprachen</dt><dd>Deutsch, Englisch</dd>
+            </dl>
+            <p class="karte__aktion">
+              <a class="btn" href="kontakt.html">
+                Kontakt aufnehmen <span class="btn__pfeil" aria-hidden="true">→</span>
+              </a>
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="wrap block">
+        <div class="abschnitt-titel" data-reveal>
+          <h2>Stationen</h2>
+          <span>03</span>
+        </div>
+        <ol class="stationen">
+          <li data-reveal style="--reveal-delay:0ms">
+            <span class="stationen__zeit">2026</span>
+            <div><h3>Bachelor Kommunikation und Medienmanagement</h3><p>Abschlussarbeit über Barrierefreiheit in Videospielen, inklusive eigenem Prototyp und Evaluation.</p></div>
+          </li>
+          <li data-reveal style="--reveal-delay:80ms">
+            <span class="stationen__zeit">2025 – 2026</span>
+            <div><h3>Studienprojekte</h3><p>Interaktive Website zum Studiengang, Social-Media-Konzept, typografische Arbeiten.</p></div>
+          </li>
+          <li data-reveal style="--reveal-delay:160ms">
+            <span class="stationen__zeit">davor</span>
+            <div><h3>DEINE STATION</h3><p>Praktikum, Werkstudentenjob, Ehrenamt – alles, was zeigt, wie du arbeitest.</p></div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="cta" data-reveal>
+          <p class="cta__label">Kontakt</p>
+          <a class="cta__mail" href="mailto:hallo@deine-domain.de">hallo@deine-domain.de</a>
+          <p class="cta__text">
+            Schreib mir gern – zu einer offenen Stelle, einem Projekt oder einfach so.
+          </p>
+        </div>
+
+        <div class="unten">
+          <p>© 2026 Lilly Schattner</p>
+          <nav aria-label="Rechtliches und Profile">
+            <ul>
+            <li><a href="https://github.com/lost-npc" rel="me noopener" target="_blank">GitHub<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+            <li><a href="https://lost-npc.itch.io" rel="me noopener" target="_blank">itch.io<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+            <li><a href="https://linkedin.com/in/DEIN-PROFIL" rel="me noopener" target="_blank">LinkedIn<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+              <li><a href="impressum.html">Impressum</a></li>
+              <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
