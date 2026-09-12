@@ -1,9 +1,8 @@
 /* ==========================================================================
    PORTFOLIO LILLY SCHATTNER
-   Eine einzige Stylesheet-Datei, in Abschnitte geteilt:
 
      1  Schriften
-     2  Design-Tokens      ← hier änderst du Farben, Größen, Abstände
+     2  Design-Tokens      (Farben, Größen, Abstände)
      3  Reset und Basis
      4  Layout-Hilfen
      5  Bausteine          (Buttons, Chips, Abschnittstitel)
@@ -13,17 +12,11 @@
      9  Projektseite
     10  Über mich, Kontakt, Fehlerseite
     11  Bewegung und Druck
-
-   Regel: Farbwerte und Größen stehen ausschließlich in Abschnitt 2.
-   Wer weiter unten einen Hex-Wert einträgt, bricht das System.
    ========================================================================== */
 
 
 /* ==========================================================================
    1  SCHRIFTEN
-   Lokal ausgeliefert, nicht über das Google-Fonts-CDN. Das ist kein Detail:
-   Beim Einbinden über Google werden IP-Adressen der Besucher in die USA
-   übertragen – dafür gab es Abmahnungen.
    ========================================================================== */
 
 @font-face {
@@ -83,9 +76,7 @@
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
 
-  /* --- Schriftgrößen ---
-     Fluid: skaliert stufenlos zwischen kleinem und großem Fenster.
-     Deshalb braucht die Seite fast keine Media Queries. */
+  /* --- Schriftgrößen --- */
   --step--1: clamp(0.83rem, 0.81rem + 0.11vw, 0.9rem);
   --step-0: clamp(1rem, 0.96rem + 0.19vw, 1.125rem);
   --step-1: clamp(1.2rem, 1.13rem + 0.35vw, 1.44rem);
@@ -132,8 +123,7 @@
   --schatten: 0 1px 2px rgb(20 20 26 / 0.05), 0 12px 32px -12px rgb(20 20 26 / 0.18);
 }
 
-/* --- Farben: DUNKEL ---
-   Greift, wenn das System auf Dunkel steht und nichts anderes gewählt wurde. */
+/* --- Farben: DUNKEL ---/
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
@@ -221,9 +211,6 @@ h4 {
   line-height: 1.03;
   letter-spacing: -0.03em;
   text-wrap: balance;
-  /* Deutsche Komposita sind lang. „Datenschutzerklärung“ in Displaygröße
-     ist auf einem 375px-Bildschirm breiter als der Bildschirm – ohne diese
-     zwei Zeilen scrollt die Seite seitlich. Getrennt wird nur im Notfall. */
   overflow-wrap: break-word;
   hyphens: auto;
 }
@@ -239,7 +226,7 @@ a {
   text-underline-offset: 0.22em;
 }
 
-/* Sichtbarer Fokusring. Bitte nie entfernen – ohne ihn ist die Seite
+/* Sichtbarer Fokusring. nie entfernen – ohne ihn ist die Seite
    per Tastatur nicht bedienbar. */
 :focus-visible {
   outline: 2px solid var(--focus);
@@ -1216,8 +1203,6 @@ a {
   }
 }
 
-/* Wer im Betriebssystem „Bewegung reduzieren“ eingestellt hat,
-   bekommt keine Animationen. Das ist keine Kür. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
