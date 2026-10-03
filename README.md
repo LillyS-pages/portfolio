@@ -1,4 +1,4 @@
-# Portfolio Lilly Schattner
+# Portfolio Lilly
 
 Statische Website: reines HTML, CSS und JavaScript.
 
